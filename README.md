@@ -73,9 +73,11 @@ ls -l /usr/tor/home/hidden-services
 
 which should give you an output that looks something like this
 
--rwx------ 1 root root hostname
--rwx------ 1 root root hs_ed25519_public_key
--rwx------ 1 root root hs_ed25519_secret_key
+```bash
+-rwx------ 1 root root        hostname
+-rwx------ 1 root root        hs_ed25519_public_key
+-rwx------ 1 root root        hs_ed25519_secret_key
+```
 
 Once you know your files are in the container you can use the following commands to fix permissions and copy the data
 
