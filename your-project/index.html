@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nginx Test</title>
+    <meta
+      name="description"
+      content="This is an nginx test webpage deployed with docker"
+    />
+    <link rel="stylesheet" href="/css/index_style.css" />
+  </head>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/pages/about.html">About</a></li>
+    </ul>
+  </nav>
+  <body>
+    <main>
+      <section id="hero">
+        <div id="test_page">
+          <h1>
+            Welcome to the
+            <img id="nginx-logo" src="/images/nginx_logo.png" alt="nginx" />
+            driven <br /><img
+              id="tor-logo"
+              src="/images/tor_logo.png"
+              alt="tor project"
+            />
+            enabled
+            <img
+              id="docker-logo"
+              src="/images/docker-logo-white.png"
+              height="48px"
+              width="200px"
+              alt="docker"
+            />
+            compose project
+          </h1>
+          <p>
+            The goal is to make this page visible via tor hidden services. We
+            are using nginx to serve tor hidden services with docker-compose to
+            make it all happen.
+          </p>
+        </div>
+      </section>
+      <section id="info">
+        <div id="setup_text">
+          <h2>TOR Service Composer</h2>
+          <p>
+            Use this compose setup to generate a tor hidden service with nginx
+            serving static assets. Simply replace the contents of the folder
+            testproject with your static assests. Your index.html file should be
+            located in tor-composer/your-project/index.html.
+          </p>
+          <br />
+          <p>
+            Once you have added all your files, in the terminal, at the root of
+            your project issue the following command<br />
+            <code>docker-compose up --build</code><br />
+            Once you see it built and both containers are running, you can use
+            the command following code to enter the container.<br /><code
+              >docker exec -it hiddenservices /bin/sh</code
+            ><br />
+            Once in the container you can issue the command <br /><code
+              >cat hidden-services/hostname</code
+            ><br />
+            This will print your .onion address to the terminal. Open tor
+            browser and navigate to your new hosted site. It would be a good
+            idea to backup your docker volume to avoid losing your
+            hidden-service keys and address.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

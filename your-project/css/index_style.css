@@ -1,0 +1,51 @@
+* {
+    font-family: monospace;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: whitesmoke;
+}
+nav {
+    position: fixed;
+    margin: 0 auto;
+    width: 100%;
+    padding: 2px;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    background-color: black;
+}
+nav a {
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-decoration: none;
+    color: darkgreen;
+}
+nav li {
+    display: inline;
+    padding: 5px;
+}
+#test_page {
+    display: inline-block;
+    width: 100%;
+    position: center;
+    margin: 17dvh auto;
+    padding-top: 23dvh;
+    padding-bottom: 23dvh;
+    background-color: black;
+    text-align: center;
+    font-size: 1.3rem;
+    color: green;
+}
+
+#hero {
+    background-color: whitesmoke;
+}
+#info {
+    background-color: green;
+}
+#setup_text {
+    padding: 10rem;
+    text-align: center;
+}
