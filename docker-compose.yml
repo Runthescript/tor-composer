@@ -6,7 +6,7 @@ services:
       - freenet
     environment:
       - SHELL_FORMAT_EXTRA=$${HS_DIR},$${HS_HOST},$${HS_PORT}
-      - HS_DIR=/var/lib/tor/hidden-services/
+      - HS_DIR=/var/lib/tor/.tor/
       - HS_HOST=webserver
       - HS_PORT=80
     volumes:
@@ -14,7 +14,7 @@ services:
       - torkeys:/var/lib/tor/
       - ngxaccesslog:/var/log/tor/host.access.log
       # Uncomment the line below to add key files directory
-      # - ./hiddenservices:/usr/tor/home/         
+      # - ./hiddenservices:/usr/tor/home/
     restart: always
   nginx:
     image: nginx:alpine

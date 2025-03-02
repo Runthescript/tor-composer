@@ -19,17 +19,20 @@ docker exec -it tor /bin/sh
 Inside the tor container, issue the following command to print your .onion address:
 
 ```bash
-cat /var/lib/tor/hidden-services/hostname
+cat /var/lib/tor/.tor/hostname
 ```
 
 This will print your .onion address to the terminal. Open the Tor Browser and navigate to your newly hosted site.
-Backup Your Data
 
-It would be a good idea to backup your Docker volume to avoid losing your hidden-service keys and address.
+## Backup Your Data
+
+It would be a good idea to backup your Docker volumes to avoid losing your hidden-service keys and address.
 
 ### Adding an external hidden-service file
 
-If you already have an .onion address and would like to use it, you may load your keys into the container using the following method. Before you start the container, move the folder containing the keys, address, and authorized_clients into the projects hiddenservices directory. If your folder that your are moving to the project is not currently named hidden-services, rename it before you run the docker compose command. In the docker-compose.yml file you will need to uncomment the line below the comment:
+If you already have an .onion address and would like to use it, you may load your keys into the container using the following method. Before you start the container, move the folder containing the keys, address, and authorized_clients into the projects hiddenservices directory.
+
+\*\*If the folder that your are moving to the project is not currently named hidden-services, rename it before you run the docker compose command. In the docker-compose.yml file you will need to uncomment the line below the comment:
 
 ```bash
     volumes:
@@ -62,7 +65,7 @@ docker-compose up --build
 Once the container has started type or paste the following command to enter the container.
 
 ```bash
-docker exec -u root -it tor /bin/sh
+docker exec -it tor /bin/sh
 ```
 
 Now that you are in the container check to make sure your key files are copied and what user owns them with the following
@@ -74,18 +77,17 @@ ls -l /usr/tor/home/hidden-services
 which should give you an output that looks something like this
 
 ```bash
--rwx------ 1 root root        hostname
--rwx------ 1 root root        hs_ed25519_public_key
--rwx------ 1 root root        hs_ed25519_secret_key
+total 0
+-rwx------    1 tor      tor             63 Feb 26 00:36 hostname
+-rwx------    1 tor      tor             64 Feb 26 00:36 hs_ed25519_public_key
+-rwx------    1 tor      tor             96 Feb 26 00:36 hs_ed25519_secret_key
 ```
 
-Once you know your files are in the container you can use the following commands to fix permissions and copy the data
+Once you know your files are in the container you can use the following commands to copy the data and print the hostname to the terminal
 
 ```bash
-chown -R tor:tor /usr/tor/home/hidden-services
-chmod -R 700 /usr/tor/home/hidden-services
-cp /usr/tor/home/hidden-services/* /var/lib/tor/hidden-services
-cat /var/lib/tor/hidden-services/hostname
+cp /usr/tor/home/hidden-services/* /var/lib/tor/.tor
+cat /var/lib/tor/.tor/hostname
 ```
 
 If after running the last command you see your onion address printed to the terminal you can now exit the container with ctrl+d or by typing exit and hitting enter. After exiting container you will
