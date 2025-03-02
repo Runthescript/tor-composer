@@ -113,7 +113,3 @@ docker-compose up --build
 ```
 
 Your externally loaded keys should be in use now. Check by navigating to your .onion address. You can check your address the same way as described in the setup instructions.
-
-```
-
-```
