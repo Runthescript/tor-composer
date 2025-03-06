@@ -96,7 +96,7 @@ If `"IsTor:"` returns `false`, you are not using tor and will need to troublesho
 > - Host firewalling preventing docker from accessing network
 > - Not being connected to the internet
 
-> [!IMPORTANT] >  
+> [!IMPORTANT]  
 > _Back-up Your Data!_  
 > It would be a good idea to backup your Docker volumes to avoid losing your hidden-service keys and address. If you are using docker desktop you will need to login to backup or migrate your volumes.
 
