@@ -132,7 +132,7 @@ restart: always
 
 ## Assigning Permissions
 
-You will need to enter the container as tor and assign some permissions to the folder so that we can copy our keys into the `HiddenServiceDir`. 
+You will need to enter the container as tor and check some permissions for the folder so that we can copy our keys into the `HiddenServiceDir`. 
 
 >[!NOTE]
 >Only tor can have permissions to modify the key directories contents. Else you will get an error that the directory is to permissive.
