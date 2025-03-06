@@ -29,7 +29,6 @@ nav li {
 #test_page {
     display: inline-block;
     width: 100%;
-    position: center;
     margin: 17dvh auto;
     padding-top: 23dvh;
     padding-bottom: 23dvh;
@@ -48,4 +47,81 @@ nav li {
 #setup_text {
     padding: 10rem;
     text-align: center;
+}
+#info {
+    position: relative;
+    size: 1.3rem;
+    line-height: 1.6;
+    margin: 0;
+    padding: 10px;
+    background-color: green;
+    color: black;
+}
+/* @media small {
+
+    
+} */
+#how-to {
+    margin: auto;
+    max-width: 900px;
+}
+#info code {
+    color: darkgreen;
+}
+
+#info h1,
+#info h2,
+#info h3 {
+    color: black;
+}
+
+#info h1 {
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+}
+
+code {
+    font-family: monospace;
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+pre {
+    display: inline-block;
+    background-color: darkslategrey;
+    color: darkgreen;
+    border-radius: 5px;
+    padding: 5px;
+    overflow-x: auto;
+    font-size: 1.2rem;
+}
+
+pre code {
+    display:flex;
+    color: darkgreen;
+}
+
+#info p {
+    margin: 15px 0;
+}
+
+#info ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.note {
+    background-color: #f9e0b7;
+    padding: 10px;
+    border-left: 4px solid #e67e22;
+    margin: 15px 0;
+}
+
+.highlight {
+    background-color: #d1f2eb;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #1abc9c;
 }

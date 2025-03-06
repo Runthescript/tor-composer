@@ -9,7 +9,7 @@
       name="description"
       content="This is an nginx test webpage deployed with docker"
     />
-    <link rel="stylesheet" href="/css/index_style.css" />
+    <link rel="stylesheet" href="./css/index_style.css" />
   </head>
   <nav>
     <ul>
@@ -47,32 +47,67 @@
         </div>
       </section>
       <section id="info">
-        <div id="setup_text">
-          <h2>TOR Service Composer</h2>
-          <p>
-            Use this compose setup to generate a tor hidden service with nginx
-            serving static assets. Simply replace the contents of the folder
-            testproject with your static assests. Your index.html file should be
-            located in tor-composer/your-project/index.html.
-          </p>
-          <br />
-          <p>
-            Once you have added all your files, in the terminal, at the root of
-            your project issue the following command<br />
-            <code>docker-compose up --build</code><br />
-            Once you see it built and both containers are running, you can use
-            the command following code to enter the container.<br /><code
-              >docker exec -it hiddenservices /bin/sh</code
-            ><br />
-            Once in the container you can issue the command <br /><code
-              >cat hidden-services/hostname</code
-            ><br />
-            This will print your .onion address to the terminal. Open tor
-            browser and navigate to your new hosted site. It would be a good
-            idea to backup your docker volume to avoid losing your
-            hidden-service keys and address.
-          </p>
-        </div>
+          <div id="how-to">
+            <h2>TOR Service Composer</h2>
+            <p>Use this compose setup to generate a Tor hidden service with Nginx serving static assets. Simply replace the contents of the folder <code>your-project</code> with your static assets. Your <code>index.html</code> file should be located in <code>tor-composer/your-project/index.html</code>.</p>
+            <h3>Setup Instructions</h3>
+            <p>Once you have added all your files, in the terminal, at the root of your project, issue the following command:</p>
+            <pre><code>docker-compose up --build</code></pre>
+            <p>Once you see that the build is complete and both containers are running, you can enter the container with the following command:</p>
+            <pre><code>docker exec -it tor /bin/sh</code></pre>
+            <p>Inside the tor container, issue the following command to print your .onion address:</p>
+            <pre><code>cat /var/lib/tor/.tor/hostname</code></pre>
+            <p>This will print your .onion address to the terminal. Open the Tor Browser and navigate to your newly hosted site.</p>
+            <h4>Backup Your Data</h4>
+            <p>It would be a good idea to backup your Docker volumes to avoid losing your hidden-service keys and address.</p>
+            <h3>Adding external key files</h3>
+            <p>If you already have an .onion address and would like to use it, you may load your keys into the container using the following method. Before you start the container, move the folder containing the keys, address, and authorized_clients into the projects hiddenservices directory.</p>
+            <p><strong>If the folder that you are moving to the project is not currently named hidden-services, rename it before you run the docker compose command. In the docker-compose.yml file you will need to uncomment the line below the comment:</strong></p>
+            <pre><code>volumes:
+              - ./torrc.template:/etc/tor/torrc.template
+              - torkeys:/var/lib/tor/
+              - ngxaccesslog:/var/log/tor/host.access.log
+              # Uncomment the line below to add key files to directory
+              # - ./hiddenservices:/usr/tor/home/
+              restart: always</code></pre>
+            <p>Uncomment like this:</p>
+            <pre><code>volumes:
+            - ./torrc.template:/etc/tor/torrc.template
+            - torkeys:/var/lib/tor/
+            - ngxaccesslog:/var/log/tor/host.access.log
+            # Uncomment the line below to add key files   directory
+            - ./hiddenservices:/usr/tor/home/
+            restart: always</code></pre>
+            <p>We will need to enter the container as root and assign some permissions to the folder so that we can copy our keys into the HiddenServiceDir. In the terminal navigate to the root of the tor-composer project. You will need to start the containers with:</p>
+            <pre><code>docker-compose up --build</code></pre>
+            <p>Once the container has started type or paste the following command to enter the container:</p>
+            <pre><code>docker exec -it tor /bin/sh</code></pre>
+            <p>Now that you are in the container check to make sure your key files are copied and what user owns them with the following:</p>
+            <pre><code>ls -l /usr/tor/home/hidden-services</code></pre>
+            <p>Which should give you an output that looks something like this:</p>
+            <pre><code>total 0
+              -rwx------    1 tor      tor             63 Feb 26 00:36 hostname
+              -rwx------    1 tor      tor             64 Feb 26 00:36 hs_ed25519_public_key
+              -rwx------    1 tor      tor             96 Feb 26 00:36 hs_ed25519_secret_key
+            </code></pre>
+            <p>Once you know your files are in the container you can use the following commands to copy the data and print the hostname to the terminal:</p>
+            <pre><code>cp /usr/tor/home/hidden-services/* /var/lib/tor/.tor<br />cat /var/lib/tor/.tor/hostname</code></pre>
+            <p>If after running the last command you see your onion address printed to the terminal you can now exit the container with ctrl+d or by typing exit and hitting enter. After exiting container you will:</p>
+            <pre><code>docker-compose down</code></pre>
+            <p>Go back to the docker-compose.yml file and recomment the line we uncommented. It should look like
+              the example below when done:</p>
+            <pre><code>volumes:
+            - ./torrc.template:/etc/tor/torrc.template
+            - torkeys:/var/lib/tor/
+            - ngxaccesslog:/var/log/tor/host.access.log
+            # Uncomment the line below to add key files directory
+            # - ./hiddenservices:/usr/tor/home/
+            restart: always</code></pre>
+            <p>Finally, you can go ahead in the root of tor-composer project:</p>
+            <pre><code>docker-compose up --build</code></pre>
+            <p>Your externally loaded keys should be in use now. Check by navigating to your .onion address. You
+              can check your address the same way as described in the setup instructions.</p>
+          </div>
       </section>
     </main>
   </body>
