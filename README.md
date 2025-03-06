@@ -56,7 +56,7 @@ uncomment like this:
     restart: always
 ```
 
-We will need to enter the container as root and assign some permissons to the folder so that we can copy our keys into the HiddenServiceDir. In the terminal navigate to the root of the tor-composer project. You will need to start the containers with
+We will need to enter the container as root and assign some permissions to the folder so that we can copy our keys into the HiddenServiceDir. In the terminal navigate to the root of the tor-composer project. You will need to start the containers with
 
 ```bash
 docker-compose up --build
