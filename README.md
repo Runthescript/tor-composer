@@ -130,7 +130,7 @@ volumes:
 restart: always
 ```
 
-## Assigning Permissions
+## Copying Keys
 
 You will need to enter the container as tor and check some permissions for the folder so that we can copy our keys into the `HiddenServiceDir`. 
 
