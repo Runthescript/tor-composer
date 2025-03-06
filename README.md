@@ -2,7 +2,7 @@
 
 Use this compose setup to generate a Tor hidden service with Nginx serving static assets. Simply replace the contents of the folder `your-project` with your static assets. Your `index.html` file should be located in `tor-composer/your-project/index.html`.
 
-> [!NOTE]  
+> [!NOTE]
 > This project has an included html website that is meant to help understand how to organize your project and test initial functionality of the tor hidden-service. If you are having trouble use this to help troubleshoot.
 
 ## Prerequisites
@@ -15,7 +15,7 @@ Go to [Docker website](https://www.docker.com/products/docker-desktop/) to downl
 
 Using docker to protect your identity is already a great choice. The isolation that this provides your host machine is ideal for hosting hidden-services. You can remain safe so long as you follow this practical advice.
 
-> [!CAUTION]  
+> [!CAUTION]
 > Port Security  
 > Please be advised this project does not require port forwarding.**If the machine you are running docker on can reach _http and https websites_, nothing is needed to be done.** To maintain isolation and network security please adhere to the following best practices below:
 >
@@ -23,7 +23,7 @@ Using docker to protect your identity is already a great choice. The isolation t
 >
 > - **DO _NOT_ open ports in the docker-compose file.** This is not recommended and could cause docker to no longer isolate the containers from the host.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Meta Data  
 > Some may be concerned with leaving traceable data available in the browser for users to examine. This could lead to someone discovering idenitifiable information about you. You should remove all meta data from images before hosting them on your onion site.
 
@@ -31,7 +31,7 @@ Using docker to protect your identity is already a great choice. The isolation t
 
 Begin by cloning this repository. Open the terminal or command prompt and navigate to the root of the cloned repo. This is where we will issue the docker commands.
 
-> [!NOTE]  
+> [!NOTE]
 > You will use the [your-project](/your-project/) directory to host serve your website. If you already have a website built, simply delete the contents of `your-project`. If you are simply testing this project out, you can proceed and deploy the included site.
 
 ## Step One
@@ -61,9 +61,8 @@ cat /var/lib/tor/.tor/hostname
 
 This will print your .onion address to the terminal. Open the Tor Browser and navigate to your newly hosted site.
 
-## Bind Mounts
-
-This project does not need to be restarted to update changes to the website. Changes are being tracked in the `your-project` folder. If you modify files in the `your-project` directory while the services are running, the changes will happen immediately.
+> [!IMPORTANT]
+> This project does not need to be restarted to update changes to the website. Changes are being tracked in the `your-project` folder. If you modify files in the `your-project` directory while the services are running, the changes will happen immediately.
 
 For this reason you should develop your website outside of this folder, then copy the whole project over when making changes. This way you don't break your site while developing.
 
@@ -91,14 +90,14 @@ If tor is configured properly, you will return the following, where the X's repr
 
 If `"IsTor:"` returns `false`, you are not using tor and will need to troubleshoot further.
 
-> [!NOTE]  
+> [!NOTE]
 > Possible issues that prevent you from returning a true response
 >
 > - Network configurations preventing tor traffic
 > - Host firewalling preventing docker from accessing network
 > - Not being connected to the internet
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Back-up Your Data!  
 > It would be a good idea to backup your Docker volumes to avoid losing your hidden-service keys and address. If you are using docker desktop you will need to login to backup or migrate your volumes.
 
@@ -196,5 +195,5 @@ Finally you can go ahead in the root of tor-composer project and build the proje
 docker-compose up --build
 ```
 
-> [!TIP]  
+> [!TIP]
 > Your externally loaded keys should be in use now. Check by navigating to your .onion address. You can check your address the same way as described in the [setup instructions](#step-three).
