@@ -15,17 +15,15 @@ Go to [Docker website](https://www.docker.com/products/docker-desktop/) to downl
 
 Using docker to protect your identity is already a great choice. The isolation that this provides your host machine is ideal for hosting hidden-services. You can remain safe so long as you follow this practical advice.
 
-> [!CAUTION]
-> Port Security  
+> [!CAUTION] > _Port Security_  
 > Please be advised this project does not require port forwarding.**If the machine you are running docker on can reach _http and https websites_, nothing is needed to be done.** To maintain isolation and network security please adhere to the following best practices below:
 >
 > - **DO _NOT_ forward any ports on your network!** This is not necessary to host onion services.
 >
 > - **DO _NOT_ open ports in the docker-compose file.** This is not recommended and could cause docker to no longer isolate the containers from the host.
 
-> [!IMPORTANT]
-> Meta Data  
-> Some may be concerned with leaving traceable data available in the browser for users to examine. This could lead to someone discovering idenitifiable information about you. You should remove all meta data from images before hosting them on your onion site.
+> [!IMPORTANT] > _Meta Data_  
+> Some may be concerned with leaving traceable data available in the browser for users to examine. This could lead to someone discovering identifiable information about you. You should remove all meta data from images before hosting them on your onion site.
 
 # Setup Instructions
 
@@ -62,9 +60,8 @@ cat /var/lib/tor/.tor/hostname
 This will print your .onion address to the terminal. Open the Tor Browser and navigate to your newly hosted site.
 
 > [!IMPORTANT]
-> This project does not need to be restarted to update changes to the website. Changes are being tracked in the `your-project` folder. If you modify files in the `your-project` directory while the services are running, the changes will happen immediately.
-
-For this reason you should develop your website outside of this folder, then copy the whole project over when making changes. This way you don't break your site while developing.
+> This project does not need to be restarted to update changes to the website. Changes are being tracked in the `your-project` folder. If you modify files in the `your-project` directory while the services are running, the changes will happen immediately.  
+> For this reason you should develop your website outside of this folder, then copy the whole project over when making changes. This way you don't break your site while developing.
 
 ## Testing TOR
 
@@ -97,8 +94,7 @@ If `"IsTor:"` returns `false`, you are not using tor and will need to troublesho
 > - Host firewalling preventing docker from accessing network
 > - Not being connected to the internet
 
-> [!IMPORTANT]
-> Back-up Your Data!  
+> [!IMPORTANT] > _Back-up Your Data!_  
 > It would be a good idea to backup your Docker volumes to avoid losing your hidden-service keys and address. If you are using docker desktop you will need to login to backup or migrate your volumes.
 
 # Adding Your Own Key Files
