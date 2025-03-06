@@ -13,7 +13,7 @@ services:
       - ./torrc.template:/etc/tor/torrc.template
       - torkeys:/var/lib/tor/
       - ngxaccesslog:/var/log/tor/host.access.log
-      # Uncomment the line below to add key files directory
+      # Remove comment from the line below to add key files
       # - ./hiddenservices:/usr/tor/home/
     restart: always
   nginx:
