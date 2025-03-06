@@ -106,7 +106,7 @@ If you already have an .onion address and would like to use it, you may load you
 
 ## Adding Keys to Project
 
-If the folder that your are moving to the project is not currently named `hidden-services`, rename it before you run the docker compose command. In the docker-compose.yml file you will need to uncomment the line below the comment:
+If the folder that your are moving to the project is not currently named `hidden-services`, rename it before you run the docker compose command. In the `docker-compose.yml` file you will need to remove the comment from the line below the first comment under tor's volumes:
 
 ```yaml
 volumes:
@@ -132,7 +132,12 @@ restart: always
 
 ## Assigning Permissions
 
-We will need to enter the container as root and assign some permissions to the folder so that we can copy our keys into the `HiddenServiceDir`. In the terminal navigate to the root of the tor-composer project. You will need to start the containers with
+You will need to enter the container as tor and assign some permissions to the folder so that we can copy our keys into the `HiddenServiceDir`. 
+
+>[!NOTE]
+>Only tor can have permissions to modify the key directories contents. Else you will get an error that the directory is to permissive.
+
+In the terminal navigate to the root of the tor-composer project. You will need to start the containers with
 
 ```bash
 docker-compose up --build
