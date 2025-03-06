@@ -15,16 +15,15 @@ Go to [Docker website](https://www.docker.com/products/docker-desktop/) to downl
 
 Using docker to protect your identity is already a great choice. The isolation that this provides your host machine is ideal for hosting hidden-services. You can remain safe so long as you follow this practical advice.
 
-> [!CAUTION]  
+> [!CAUTION] Port Security  
 > Please be advised this project does not require port forwarding.**If the machine you are running docker on can reach _http and https websites_, nothing is needed to be done.** To maintain isolation and network security please adhere to the following best practices below:
 >
 > - **DO _NOT_ forward any ports on your network!** This is not necessary to host onion services.
 >
 > - **DO _NOT_ open ports in the docker-compose file.** This is not recommended and could cause docker to no longer isolate the containers from the host.
 
-## Meta Data
-
-Some may be concerned with leaving traceable data available in the browser for users to examine. This could lead to someone discovering idenitifiable information about you. You should remove all meta data from images before hosting them on your onion site.
+> [!IMPORTANT] Meta Data  
+> Some may be concerned with leaving traceable data available in the browser for users to examine. This could lead to someone discovering idenitifiable information about you. You should remove all meta data from images before hosting them on your onion site.
 
 # Setup Instructions
 
@@ -36,7 +35,7 @@ Begin by cloning this repository. Open the terminal or command prompt and naviga
 ## Step One
 
 Copy your website files and folders into the `your-project` directory.
-Once you have added all your static web files to [your-project](/your-project/) (ie. html,css, javascipt, images), in the terminal, at the root of `tor-composer` project, issue the following command:
+Once you have added all your static web files to [your-project](/your-project/) (ie. html,css, javascipt, images, etc), in the terminal, at the root of `tor-composer`, issue the following command:
 
 ```bash
 docker-compose up --build
@@ -90,15 +89,13 @@ If tor is configured properly, you will return the following, where the X's repr
 
 If `"IsTor:"` returns `false`, you are not using tor and will need to troubleshoot further.
 
-> [!NOTE]  
-> Possible issues that prevent you from returning a true response
+> [!NOTE] Possible issues that prevent you from returning a true response
 >
 > - Network configurations preventing tor traffic
 > - Host firewalling preventing docker from accessing network
 > - Not being connected to the internet
 
-> [!IMPORTANT]  
-> Back-up Your Data
+> [!IMPORTANT] Back-up Your Data!  
 > It would be a good idea to backup your Docker volumes to avoid losing your hidden-service keys and address. If you are using docker desktop you will need to login to backup or migrate your volumes.
 
 # Adding Your Own Key Files
