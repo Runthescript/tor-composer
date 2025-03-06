@@ -2,29 +2,25 @@
 
 Use this compose setup to generate a Tor hidden service with Nginx serving static assets. Simply replace the contents of the folder `your-project` with your static assets. Your `index.html` file should be located in `tor-composer/your-project/index.html`.
 
+> [!NOTE]  
+> This project has an included html website that is meant to help understand how to organize your project and test initial functionality of the tor hidden-service. If you are having trouble use this to help troubleshoot.
+
 ## Prerequisites
 
 For this project you will need to have docker with docker compose installed on the machine you plan to host on. Docker is available for Windows, MacOS, Linux distros, and ARM based architechtures.
 
 Go to [Docker website](https://www.docker.com/products/docker-desktop/) to download the needed software. Docker is free for personal use at the time of this post. If you intend to use this for business, it will require a license purchase.
 
-## Example Static Site
-
-This project has an included html website that is meant to help understand how to organize your project and test initial functionality of the tor hidden-service. If you are having trouble use this to help troubleshoot.
-
 # Operational Security (OpSec)
 
 Using docker to protect your identity is already a great choice. The isolation that this provides your host machine is ideal for hosting hidden-services. You can remain safe so long as you follow this practical advice.
 
-## Port Security
-
-**_Do NOT open ports on your network or inside the compose project!_**
-
-Please be advised this project does not require port forwarding.**If the machine you are running docker on can reach _http and https websites_, nothing is needed to be done.** To maintain isolation and network security please adhere to the following best practices below:
-
-- **DO _NOT_ forward any ports on your network!** This is not necessary to host onion services.
-
-- **DO _NOT_ open ports in the docker-compose file.** This is not recommended and could cause docker to no longer isolate the containers from the host.
+> [!CAUTION]  
+> Please be advised this project does not require port forwarding.**If the machine you are running docker on can reach _http and https websites_, nothing is needed to be done.** To maintain isolation and network security please adhere to the following best practices below:
+>
+> - **DO _NOT_ forward any ports on your network!** This is not necessary to host onion services.
+>
+> - **DO _NOT_ open ports in the docker-compose file.** This is not recommended and could cause docker to no longer isolate the containers from the host.
 
 ## Meta Data
 
@@ -34,7 +30,8 @@ Some may be concerned with leaving traceable data available in the browser for u
 
 Begin by cloning this repository. Open the terminal or command prompt and navigate to the root of the cloned repo. This is where we will issue the docker commands.
 
-You will use the [your-project](/your-project/) directory to host serve your website. If you already have a website built, simply delete the contents of `your-project`. If you are simply testing this project out, you can proceed and deploy the included site.
+> [!NOTE]  
+> You will use the [your-project](/your-project/) directory to host serve your website. If you already have a website built, simply delete the contents of `your-project`. If you are simply testing this project out, you can proceed and deploy the included site.
 
 ## Step One
 
@@ -93,15 +90,16 @@ If tor is configured properly, you will return the following, where the X's repr
 
 If `"IsTor:"` returns `false`, you are not using tor and will need to troubleshoot further.
 
-### **Possible issues**
+> [!NOTE]  
+> Possible issues that prevent you from returning a true response
+>
+> - Network configurations preventing tor traffic
+> - Host firewalling preventing docker from accessing network
+> - Not being connected to the internet
 
-- Network configurations preventing tor traffic
-- Host firewalling preventing docker from accessing network
-- Not being connected to the internet
-
-## **Back-up Your Data**
-
-It would be a good idea to backup your Docker volumes to avoid losing your hidden-service keys and address. If you are using docker desktop you will need to login to backup or migrate your volumes.
+> [!IMPORTANT]  
+> Back-up Your Data
+> It would be a good idea to backup your Docker volumes to avoid losing your hidden-service keys and address. If you are using docker desktop you will need to login to backup or migrate your volumes.
 
 # Adding Your Own Key Files
 
@@ -197,4 +195,5 @@ Finally you can go ahead in the root of tor-composer project and build the proje
 docker-compose up --build
 ```
 
-Your externally loaded keys should be in use now. Check by navigating to your .onion address. You can check your address the same way as described in the [setup instructions](#step-three).
+> [!TIP]  
+> Your externally loaded keys should be in use now. Check by navigating to your .onion address. You can check your address the same way as described in the [setup instructions](#step-three).
